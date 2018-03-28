@@ -1,6 +1,14 @@
 from tkinter import *
 from tkinter import ttk
-import sqlite3
+import pyodbc
+
+
+
+def connection():
+    con = pyodbc.connect("DRIVER={MySQL};SERVER=de2.fcomet.com;PORT=3306;"
+                         "DATABASE=yugenpin_booksapi;USER=yugenpin_bookapp;PASSWORD=Booksap@123; SOCKET=/var/lib/mysql/mysql.sock")
+    return con
+
 
 
 class Search():
@@ -33,7 +41,7 @@ class Search():
         self.rating.grid(row=1, column=4)
 
         self.search = ttk.Button(self.frame_search, text='Szukaj')
-        self.add_new = ttk.Button(self.frame_search, text='Dodaj nową')
+        self.add_new = ttk.Button(self.frame_search, text='Dodaj nową', command = self.db_search)
         self.add_new.grid(row=3, column =0, sticky = 'nw')
         self.search.grid(row=2, column = 0, sticky = 'nw')
 
@@ -49,10 +57,14 @@ class Search():
         self.title.delete(0, 'end')
 
     def db_search(self):
-        db = sqlite3.connect()
+        db_con = connection()
+        cur = db_con.cursor()
+        cur.execute('SELECT * FROM BOOKS')
 
-        cur = db.cursor()
-        cur.execute()
+        for row in cur:
+            print(row)
+
+
 
 
 #Wygląd wyników wyszukiwania
