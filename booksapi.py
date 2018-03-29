@@ -1,18 +1,8 @@
 from tkinter import *
 from tkinter import ttk
-import pyodbc
-
-
-
-def connection():
-    con = pyodbc.connect("DRIVER={MySQL};SERVER=de2.fcomet.com;PORT=3306;"
-                         "DATABASE=yugenpin_booksapi;USER=yugenpin_bookapp;PASSWORD=Booksap@123; SOCKET=/var/lib/mysql/mysql.sock")
-    return con
-
-
+import functions
 
 class Search():
-
 
     def __init__(self, master):
 
@@ -41,29 +31,33 @@ class Search():
         self.rating.grid(row=1, column=4)
 
         self.search = ttk.Button(self.frame_search, text='Szukaj')
-        self.add_new = ttk.Button(self.frame_search, text='Dodaj nową', command = self.db_search)
+        self.add_new = ttk.Button(self.frame_search, text='Dodaj nową', command = self.pokaz_dane)
         self.add_new.grid(row=3, column =0, sticky = 'nw')
         self.search.grid(row=2, column = 0, sticky = 'nw')
 
- #   def pokaz_dane(self):
-  #      (self.author.get())
+    def pokaz_dane(self):
+        print(self.author.get())
 
+    INSERT INTO 'BOOKS'('AUTHOR', 'TITLE', 'DATE_START', 'DATE_END', 'PAGES', 'REVIEW', 'SUMMARY', 'SPENT', 'RATING')
+    VALUES('self.author.get()', 'self.title.get()', 'self.date_start.get()',
 
-
-#funkcja czyszczenia
+    #funkcja czyszczenia
 
     def clear(self):
         self.author.delete(0, 'end')
         self.title.delete(0, 'end')
 
-    def db_search(self):
-        db_con = connection()
+    def db_insert(self):
+        db_con = functions.connection()
         cur = db_con.cursor()
-        cur.execute('SELECT * FROM BOOKS')
+        sql = "SELECT * FROM BOOKS"
+        cur.execute(sql)
+
 
         for row in cur:
             print(row)
 
+        self.clear()
 
 
 
