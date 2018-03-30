@@ -42,7 +42,7 @@ class Search():
         self.rating.grid(row=1, column=4)
 
         self.search = ttk.Button(self.frame_search, text='Szukaj', command = self.clear)
-        self.add_new = ttk.Button(self.frame_search, text='Dodaj nową', command = self.clear)
+        self.add_new = ttk.Button(self.frame_search, text='Dodaj nową', command = add_new.main)
         self.add_new.grid(row=3, column =0, sticky = 'nw')
         self.search.grid(row=2, column = 0, sticky = 'nw')
 
@@ -87,7 +87,6 @@ class Search():
 def main():
 
     root = Tk()
-    nowa
     search_books = Search(root)
     root.mainloop()
 

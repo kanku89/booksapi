@@ -18,9 +18,9 @@ class new_book():
         self.frame_add_new.pack()
 
         ttk.Label(self.frame_add_new, text='Autor:').grid(row=0, column=0, sticky='sw')
-        ttk.Label(self.frame_add_new, text='Tytuł:').grid(row=0, column=1, sticky='sw')
-        ttk.Label(self.frame_add_new, text='Rozpoczęto:').grid(row=0, column=2, sticky='sw')
-        ttk.Label(self.frame_add_new, text='Zakończono:').grid(row=0, column=3, sticky='sw')
+        ttk.Label(self.frame_add_new, text='Tytuł:').grid(row=2, column=1, sticky='sw')
+        ttk.Label(self.frame_add_new, text='Rozpoczęto:').grid(row=4, column=0, sticky='sw')
+        ttk.Label(self.frame_add_new, text='Zakończono:').grid(row=4, column=1, sticky='sw')
         ttk.Label(self.frame_add_new, text='Gatunek:').grid(row=0, column=4, sticky='sw')
         ttk.Label(self.frame_add_new, text='Liczba stron:').grid(row=0, column=5, sticky='sw')
         ttk.Label(self.frame_add_new, text='Recenzja:').grid(row=0, column=6, sticky='sw')
@@ -37,14 +37,14 @@ class new_book():
 
         # self.date_start.grid(row=4, column = 5)
         self.author.grid(row=1, column=0)
-        self.title.grid(row=1, column=1)
+        self.title.grid(row=3, column=0)
         self.pages.grid(row=1, column=4)
 
         self.genre.grid(row=1, column=3)
         self.rating.grid(row=1, column=5)
 
         self.add_new = ttk.Button(self.frame_add_new, text='Dodaj nową', command= self.dodaj_ksiazke)
-        self.add_new.grid(row=3, column=0, sticky='nw')
+        self.add_new.grid(row=10, column=0, sticky='nw')
 
     def dodaj_ksiazke(self):
         db_con = functions.connection()
@@ -63,3 +63,9 @@ class new_book():
             print('{} {} {} {} {} {} {} {}'.format(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
 
         functions.clear()
+
+def main():
+
+    root = Tk()
+    add_new = new_book(root)
+    root.mainloop()
