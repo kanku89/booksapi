@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import functions
 import test
-import add_new
+import add_book
 #import ttkcalendar
 
 class Search():
@@ -42,7 +42,7 @@ class Search():
         self.rating.grid(row=1, column=4)
 
         self.search = ttk.Button(self.frame_search, text='Szukaj', command = self.clear)
-        self.add_new = ttk.Button(self.frame_search, text='Dodaj nową', command = add_new.main)
+        self.add_new = ttk.Button(self.frame_search, text='Dodaj nową', command = add_book.new_book)
         self.add_new.grid(row=3, column =0, sticky = 'nw')
         self.search.grid(row=2, column = 0, sticky = 'nw')
 
@@ -71,7 +71,7 @@ class Search():
 
 
         for row in cur:
-            print('{} {} {} {} {} {} {} {}'.format(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
+            print('{} {} {} {} {} {} {} {}\n\n'.format(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
 
         functions.clear()
 

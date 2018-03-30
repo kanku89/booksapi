@@ -5,3 +5,5 @@ def connection():
                          "DATABASE=yugenpin_booksapi;UID=yugenpin_bookapp;PASSWORD=Booksapi@123;")
     return con
 
+def close_window(Frame):
+    Frame.destroy()
