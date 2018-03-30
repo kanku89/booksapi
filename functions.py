@@ -1,5 +1,4 @@
 import pyodbc
-import booksapi
 
 def connection():
     con = pyodbc.connect("DRIVER={MySQL ODBC 5.3 Unicode Driver};SERVER=de2.fcomet.com;PORT=3306;"

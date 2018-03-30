@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import functions
 import test
-#import add_new
+import add_new
 #import ttkcalendar
 
 class Search():
@@ -26,7 +26,7 @@ class Search():
         ttk.Label(self.frame_search, text='Kalendarz').grid(row=0, column = 5, sticky= 'sw')
 
 
-        self.date_start = test.main
+        # self.date_start = test.main
 
         self.author = ttk.Entry(self.frame_search)
         self.title = ttk.Entry(self.frame_search)
@@ -34,7 +34,7 @@ class Search():
         self.genre = ttk.Combobox(self.frame_search, values = ('To', 'Jest', 'Kurde', 'Dramat'))
         self.rating = ttk.Combobox(self.frame_search, values = ('1', '2', '3', '4', '5'))
 
-        self.date_start.grid(row=1, column = 5)
+        # self.date_start.grid(row=1, column = 5)
         self.author.grid(row = 1, column = 0)
         self.title.grid(row= 1, column=1)
 
@@ -42,11 +42,9 @@ class Search():
         self.rating.grid(row=1, column=4)
 
         self.search = ttk.Button(self.frame_search, text='Szukaj', command = self.clear)
-        self.add_new = ttk.Button(self.frame_search, text='Dodaj nową', command = self.pokaz_dane)
+        self.add_new = ttk.Button(self.frame_search, text='Dodaj nową', command = self.clear)
         self.add_new.grid(row=3, column =0, sticky = 'nw')
         self.search.grid(row=2, column = 0, sticky = 'nw')
-
-
 
     def pokaz_dane(self):
         print(self.author.get())
@@ -65,15 +63,15 @@ class Search():
 
 
 
-    def db_insert(self):
+    def db_read(self):
         db_con = functions.connection()
         cur = db_con.cursor()
-        sql = ()
+        sql = 'SELECT * FROM BOOKS;'
         cur.execute(sql)
 
 
         for row in cur:
-            print(row)
+            print('{} {} {} {} {} {} {} {}'.format(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]))
 
         functions.clear()
 
@@ -89,6 +87,7 @@ class Search():
 def main():
 
     root = Tk()
+    nowa
     search_books = Search(root)
     root.mainloop()
 
